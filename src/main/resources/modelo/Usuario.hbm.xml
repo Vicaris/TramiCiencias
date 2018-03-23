@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated mar 20, 2018 3:48:41 p.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Usuario" table="usuario" optimistic-lock="version">
+        <id name="correo" type="string">
+            <column name="correo" length="100" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" length="50" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="13" />
+        </property>
+        <property name="esAdmin" type="boolean">
+            <column name="es_admin" not-null="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
