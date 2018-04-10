@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated mar 20, 2018 3:48:41 p.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Pregunta" table="pregunta" optimistic-lock="version">
+        <id name="idPregunta" type="int">
+            <column name="id_pregunta" />
+            <generator class="assigned" />
+        </id>
+        <property name="correoUsuario" type="string">
+            <column name="correo_usuario" length="100" not-null="true" />
+        </property>
+        <property name="texto" type="string">
+            <column name="texto" not-null="true" />
+        </property>
+        <property name="titulo" type="string">
+            <column name="titulo" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
