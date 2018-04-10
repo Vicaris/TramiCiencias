@@ -22,20 +22,17 @@ import java.util.List;
 public class Principal {
     @Getter @Setter private String busqueda;
     @Getter @Setter private List<Pregunta> preguntas;
+    @Getter @Setter private Pregunta pr;
     
     PreguntaDAO pdao = new PreguntaDAO();
     
-    public String buscarPregunta(){
-      preguntas = pdao.buscar(busqueda);
-      return "resultadosbusqueda?faces-redirect=true";
+    public Principal(){
+      preguntas = pdao.verPreguntas();
     }
     
-    public Pregunta visitar(int id){
-      
-      return null;
+    public String visitar(int id){
+      pr = pdao.buscar(id);
+      return "pregunta?pr="+pr;
     }
-    
-    
-    
     
 }

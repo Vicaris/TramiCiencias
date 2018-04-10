@@ -1,12 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Resultados de Búsqueda</title>
+        <f:metadata>
+            <f:viewParam name="bus" value="#{resultadosBusqueda.busqueda}"/>
+            <f:viewParam name="prgs" value="#{resultadosBusqueda.preguntas}"/>
+        </f:metadata>
     </h:head>
     <h:body>
-        
+        <h:form>
+            <h:outputText value="Resultados para búsqueda: #{resultadosBusqueda.busqueda}"/><br/>
+            <ui:repeat value="#{resultadosBusqueda.preguntas}" var="preguntaenlista">
+                <li>
+                    <h:link outcome="#{resultadosBusqueda.visitar(preguntaenlista.idPregunta)}" value="#{preguntaenlista.titulo}" />
+                </li>
+            </ui:repeat><br/>
+            <h:link outcome="index" value="Regresar a principal"></h:link>
+        </h:form>
     </h:body>
 </html>
 

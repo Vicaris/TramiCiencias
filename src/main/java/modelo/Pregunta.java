@@ -16,7 +16,7 @@ public class Pregunta  implements java.io.Serializable {
 
     public Pregunta() {
     }
-
+    
     public Pregunta(int idPregunta, String correoUsuario, String texto, String titulo) {
        this.idPregunta = idPregunta;
        this.correoUsuario = correoUsuario;

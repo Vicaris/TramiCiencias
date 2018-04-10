@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author victo
+ * @author vicaris
  */
 public class PreguntaDAO {
     SessionFactory sf;
@@ -32,8 +32,7 @@ public class PreguntaDAO {
             tx = session.beginTransaction();
             //Escribimos la consulta en HQL
             String hql;
-            hql = "from Pregunta\n"+"where titulo like '"+abuscar+"'";
-            System.out.println(hql);
+            hql = "from Pregunta\n"+"where titulo like '%"+abuscar+"%'";
             Query query = session.createQuery(hql);
             result = (List<Pregunta>)query.list();
             tx.commit();
@@ -63,6 +62,34 @@ public class PreguntaDAO {
             String hql = "from Pregunta where idPregunta="+id;
             Query query = session.createQuery(hql);
             result = (Pregunta) query.list().get(0);
+            tx.commit();
+        }
+        catch (Exception e) {
+            //si hay un problema regresamos la base aun estado antes de la consulta
+            if (tx!=null){
+                tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+            //cerramos la session
+            session.close();
+        }
+        return result;
+    }
+    
+     public List<Pregunta> verPreguntas(){
+      List<Pregunta> result = null;
+        // arbrimos la sesion son sessionFactory 
+        Session session = sf.openSession();
+        Transaction tx = null;
+        try {
+            //iniciamos la transaccion, la consulta a realizar
+            tx = session.beginTransaction();
+            //Escribimos la consulta en HQL
+            String hql;
+            hql = "from Pregunta";
+            Query query = session.createQuery(hql);
+            result = (List<Pregunta>)query.list();
             tx.commit();
         }
         catch (Exception e) {
